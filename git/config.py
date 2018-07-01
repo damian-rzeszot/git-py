@@ -146,5 +146,8 @@ class Section:
     def set(self, name, value):
         self._entries[name] = value
 
+    def get(self, name):
+        return self._entries.get(name)
+
     def __repr__(self):
         return "<section %s %s>" % (self.name, self.parameters)

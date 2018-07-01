@@ -9,6 +9,7 @@ class RemoteCommand(BaseCommand):
             command = args[0]
         except IndexError:
             print("usage:")
+            print("  remote show")
             print("  remote add <name> <url>")
             exit(0)
 
