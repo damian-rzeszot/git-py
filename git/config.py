@@ -18,6 +18,11 @@ class Config:
     def append(self, section):
         self._sections.append(section)
 
+    def remove_section_if(self, block):
+        for section in self.sections:
+            if block(section):
+                self.sections.remove(section)
+
     def save(self):
         content = self.dump()
         self.repository.database.write_file("config", content)
