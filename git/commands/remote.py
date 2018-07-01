@@ -11,6 +11,7 @@ class RemoteCommand(BaseCommand):
             print("usage:")
             print("  remote show")
             print("  remote add <name> <url>")
+            print("  remote remote <name>")
             exit(0)
 
         try:
