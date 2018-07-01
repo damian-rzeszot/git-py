@@ -1,5 +1,7 @@
 from sys import argv
 
+from git.repository import Repository
+
 
 
 def load(name):
@@ -26,7 +28,7 @@ except ModuleNotFoundError:
 
 
 arguments = argv[2:]
-repository = None
+repository = Repository()
 
 object = klass(repository)
 object.run(*arguments)
