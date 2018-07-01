@@ -10,7 +10,7 @@ class Database:
     def read_file(self, path):
         path = ".git/%s" % path
 
-        file = open(path, "r")
+        file = open(path, "rb")
         data = file.read()
         file.close()
 
