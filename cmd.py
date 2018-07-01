@@ -21,4 +21,9 @@ arguments = argv[2:]
 repository = Repository()
 
 object = klass(repository)
-object.run(*arguments)
+
+try:
+    object.run(*arguments)
+except TypeError:
+    print("'%s' is not a correct use. See 'help'." % command)
+    exit(2)
