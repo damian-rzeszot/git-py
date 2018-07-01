@@ -13,12 +13,20 @@ def load_command(name):
 
 
 
-klass = load_command(argv[1])
+try:
+    command = argv[1]
+except IndexError:
+    command = "help"
+
+try:
+    klass = load_command(command)
+except ModuleNotFoundError:
+    print("'%s' is not a command. See 'help'." % argv[1])
+    exit(1)
+
+
 arguments = argv[2:]
-
 repository = None
-
-
 
 object = klass(repository)
 object.run(*arguments)
