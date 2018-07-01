@@ -1,17 +1,7 @@
 from sys import argv
 
 from git.repository import Repository
-
-
-
-def load(name):
-    module_name, klass_name = name.split('/', 1)
-
-    module = __import__(module_name, fromlist=[None])
-    return getattr(module, klass_name)
-
-def load_command(name):
-    return load("git.commands.%s/%sCommand" % (name, name.capitalize()))
+from git.utils import *
 
 
 
