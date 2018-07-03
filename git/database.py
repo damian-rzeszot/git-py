@@ -1,4 +1,4 @@
-from os import mkdir
+from os import mkdir, listdir
 from os.path import exists
 
 
@@ -6,6 +6,11 @@ from os.path import exists
 class Database:
     def __init__(self, repository):
         self._repository = repository
+
+    def list_directory(self, path):
+        path = ".git/%s" % path
+        return listdir(path)
+
 
     def read_file(self, path):
         path = ".git/%s" % path
