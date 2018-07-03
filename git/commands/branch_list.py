@@ -4,15 +4,20 @@ from .base import BaseCommand
 class BranchListCommand(BaseCommand):
 
 	def run(self, *args):
-		heads = self.repository.heads()
-		longest = self.get_longest_head_name(heads.entries)
+		references = self.repository.references("heads")
+		head = self.repository.head()
+		longest = self.get_longest_reference_name(references.entries)
 
-		for entry in heads.entries:
+		for entry in references.entries:
 			infix = " " * (len(longest.name) - len(entry.name))
-			print("%s%s  %s" % (entry.name, infix, entry.sha))
+
+			if head.sha == entry.sha:
+				print("* %s%s  %s" % (entry.name, infix, entry.sha))
+			else:
+				print("  %s%s  %s" % (entry.name, infix, entry.sha))
 
 
-	def get_longest_head_name(self, entries):
+	def get_longest_reference_name(self, entries):
 		longest = None
 
 		for entry in entries:

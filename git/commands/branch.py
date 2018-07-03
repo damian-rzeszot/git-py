@@ -10,6 +10,7 @@ class BranchCommand(BaseCommand):
         except IndexError:
             print("usage:")
             print("  branch list")
+            print("  branch create <name>")
             exit(0)
 
         try:
