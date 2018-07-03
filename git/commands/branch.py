@@ -11,6 +11,7 @@ class BranchCommand(BaseCommand):
             print("usage:")
             print("  branch list")
             print("  branch create <name>")
+            print("  branch delete <name>")
             exit(0)
 
         try:

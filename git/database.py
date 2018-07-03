@@ -1,4 +1,4 @@
-from os import mkdir, listdir
+from os import mkdir, listdir, remove
 from os.path import exists
 
 
@@ -10,6 +10,10 @@ class Database:
     def list_directory(self, path):
         path = ".git/%s" % path
         return listdir(path)
+
+    def delete_file(self, path):
+        path = ".git/%s" % path
+        remove(path)
 
 
     def read_file(self, path):
