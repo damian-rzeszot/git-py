@@ -7,11 +7,20 @@ class Head:
 		return self._repository
 
 	@property
-	def sha(self):
+	def value(self):
 		db = self.repository.database
-		value = db.read_file("HEAD").decode('utf8')
+		value = db.read_file("HEAD").decode('utf8').strip()
 
 		if value.startswith("ref: "):
-			return db.read_file(value[5:].strip()).strip().decode('utf8')
+			return value[5:]
 		else:
 			return value
+
+	@property
+	def branch(self):
+		value = self.value
+
+		if value.startswith("refs/heads/"):
+			return value[11:]
+		else:
+			return None

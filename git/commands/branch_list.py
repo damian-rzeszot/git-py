@@ -11,7 +11,7 @@ class BranchListCommand(BaseCommand):
 		for entry in references.entries:
 			infix = " " * (len(longest.name) - len(entry.name))
 
-			if head.sha == entry.sha:
+			if head.branch == entry.name:
 				print("* %s%s  %s" % (entry.name, infix, entry.sha))
 			else:
 				print("  %s%s  %s" % (entry.name, infix, entry.sha))
