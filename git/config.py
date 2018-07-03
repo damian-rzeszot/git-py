@@ -28,7 +28,7 @@ class Config:
         self.repository.database.write_file("config", content)
 
     def parse(self):
-        content = self.repository.database.read_file("config")
+        content = self.repository.database.read_file("config").decode("utf8")
         parser = Parser()
         return parser.parse(content)
 
