@@ -1,6 +1,7 @@
 from .base import BaseCommand
 from ..objects.object import Object
-
+from os import mkdir
+from os.path import exists
 
 
 # checkout <branch>
@@ -26,6 +27,9 @@ class CheckoutCommand(BaseCommand):
 
 		self.print_tree_recursive(commit.tree_object)
 
+		mkdir("safe-path")
+		self.save_tree_recursive(commit.tree_object, "safe-path")
+
 
 	def commit_from_sha(self, sha):
 		try:
@@ -37,6 +41,27 @@ class CheckoutCommand(BaseCommand):
 			return None
 
 		return object
+
+
+	def save_tree_recursive(self, tree, path):
+		for entry in tree.entries:
+			object = Object.file(self.repository, entry.sha)
+			output = "%s/%s" % (path, entry.name)
+			child = Object.file(self.repository, entry.sha)
+
+			if object.type == "tree":
+				mkdir(output)
+				self.save_tree_recursive(child, output)
+			else:
+				print("xx %s" % path)
+				file = open(output, "wb")
+				file.write(child.content)
+				file.close()
+
+
+
+
+
 
 
 	def print_tree_recursive(self, tree, level = 0):
