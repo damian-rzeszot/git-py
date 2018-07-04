@@ -12,7 +12,6 @@ class BranchCreateCommand(BaseCommand):
 			print("fatal: A branch named '%s' already exists." % name)
 			exit(5)
 
-		sha = head.sha
-		ref = Reference(name, sha)
+		ref = Reference(name, head.expanded_sha)
 
 		heads.store(ref)
