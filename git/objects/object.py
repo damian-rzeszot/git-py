@@ -24,7 +24,7 @@ class Object:
 
 
     @classmethod
-    def parse(klass, data, size):
+    def parse(klass, repository, data, size):
         raise NotImplementedError()
 
 

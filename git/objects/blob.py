@@ -24,7 +24,7 @@ class Blob(Object):
         return b"%s %d\x00%s" % (self.type.encode('utf-8'), self.size, self.content)
 
     def __repr__(self):
-        return "<blob size:%s>" % (self.size)
+        return "<Blob size:%s>" % (self.size)
 
 
     @classmethod
