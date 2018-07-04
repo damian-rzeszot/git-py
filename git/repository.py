@@ -40,6 +40,12 @@ class ReferencesWrapper:
     def kind(self):
         return self._kind
 
+    def contains(self, name):
+        for entry in self.entries:
+            if entry.name == name:
+                return True
+        return False
+
     @property
     def entries(self):
         db = self.repository.database

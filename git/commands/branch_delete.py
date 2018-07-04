@@ -8,15 +8,8 @@ class BranchDeleteCommand(BaseCommand):
 		heads = self.repository.references("heads")
 		head = self.repository.head()
 
-		if not self.contains_head(name, heads):
+		if not heads.contains(name):
 			print("error: branch '%s' not found." % name)
 			exit(5)
 
 		self.repository.database.delete_file("refs/heads/%s" % name)
-
-
-	def contains_head(self, name, heads):
-		for entry in heads.entries:
-			if entry.name == name:
-				return True
-		return False

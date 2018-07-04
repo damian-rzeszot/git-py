@@ -8,7 +8,7 @@ class BranchCreateCommand(BaseCommand):
 		heads = self.repository.references("heads")
 		head = self.repository.head()
 
-		if self.contains_head(name, heads):
+		if heads.contains(name):
 			print("fatal: A branch named '%s' already exists." % name)
 			exit(5)
 
@@ -16,10 +16,3 @@ class BranchCreateCommand(BaseCommand):
 		ref = Reference(name, sha)
 
 		heads.store(ref)
-
-
-	def contains_head(self, name, heads):
-		for entry in heads.entries:
-			if entry.name == name:
-				return True
-		return False
